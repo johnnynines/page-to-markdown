@@ -8,14 +8,14 @@ document.getElementById('scrape').addEventListener('click', () => {
         args: [omitContent]
       },
       (results) => {
-        document.getElementById('output').value = results[0].result;
+        document.getElementById('outputField').value = results[0].result;
       }
     );
   });
 });
 
 document.getElementById('copy').addEventListener('click', () => {
-  const output = document.getElementById('output').value;
+  const output = document.getElementById('outputField').value;
   navigator.clipboard.writeText(output).then(() => {
     alert('Output copied to clipboard!');
   }).catch(err => {
