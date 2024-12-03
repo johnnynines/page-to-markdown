@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SuperScraper</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #output { width: 100%; height: 300px; }
+  </style>
+</head>
+<body>
+  <h1>SuperScraper</h1>
+  <label>
+    <input type="checkbox" id="omit-content" />
+    Omit navigation, sidebar, pagination, footer, and table of contents
+  </label>
+  <button id="scrape">Scrape Current Tab</button>
+  <button id="copy">Copy to Clipboard</button>
+  <textarea id="output" readonly></textarea>
+  <script src="popup.js"></script>
+</body>
+</html>
