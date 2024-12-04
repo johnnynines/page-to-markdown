@@ -1,11 +1,12 @@
 document.getElementById('scrape').addEventListener('click', () => {
   const omitContent = document.getElementById('omit-content').checked;
+  const additionalSelectors = document.getElementById('additional-selectors').value;
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.scripting.executeScript(
       {
         target: { tabId: tabs[0].id },
         function: scrapeContent,
-        args: [omitContent]
+        args: [omitContent, additionalSelectors]
       },
       (results) => {
         document.getElementById('outputField').value = results[0].result;
@@ -23,7 +24,7 @@ document.getElementById('copy').addEventListener('click', () => {
   });
 });
 
-function scrapeContent(omitContent) {
+function scrapeContent(omitContent, additionalSelectors) {
   function getTextContent(element) {
     return element.childNodes.length ? Array.from(element.childNodes).map(getTextContent).join('') : element.textContent;
   }
@@ -62,7 +63,9 @@ function scrapeContent(omitContent) {
     return markdown;
   }
 
-  const elementsToOmit = omitContent ? document.querySelectorAll('nav, .sidebar, #sidebar-content, .pagination, footer, .table-of-contents, #table-of-contents-content') : [];
+  const defaultSelectors = 'nav, .sidebar, #sidebar-content, .pagination, footer, .table-of-contents, #table-of-contents-content';
+  const selectors = omitContent ? defaultSelectors + (additionalSelectors ? `, ${additionalSelectors}` : '') : additionalSelectors;
+  const elementsToOmit = selectors ? document.querySelectorAll(selectors) : [];
   const elementsToOmitSet = new Set(elementsToOmit);
   console.log('Elements to omit:', elementsToOmitSet);
 
