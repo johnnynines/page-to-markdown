@@ -26,6 +26,9 @@ document.getElementById('copy').addEventListener('click', () => {
 
 function scrapeContent(omitContent, additionalSelectors) {
   function getTextContent(element) {
+    if (element.tagName === 'CODE' && ['P', 'LI', 'SPAN'].includes(element.parentElement.tagName)) {
+      return `\`${element.textContent}\``;
+    }
     return element.childNodes.length ? Array.from(element.childNodes).map(getTextContent).join('') : element.textContent;
   }
 
@@ -39,9 +42,6 @@ function scrapeContent(omitContent, additionalSelectors) {
     if (element.tagName === 'P') return `${getTextContent(element)}\n\n`;
     if (element.tagName === 'BLOCKQUOTE') return `> ${getTextContent(element)}\n\n`;
     if (element.tagName === 'PRE') return `\`\`\`\n${getTextContent(element)}\n\`\`\`\n\n`;
-    if (element.tagName === 'CODE' && element.parentElement.tagName !== 'PRE') {
-      return `\`${getTextContent(element)}\``;
-    }
     if (element.tagName === 'UL') return `${Array.from(element.children).map(li => `- ${getTextContent(li)}`).join('\n')}\n\n`;
     if (element.tagName === 'OL') return `${Array.from(element.children).map((li, i) => `${i + 1}. ${getTextContent(li)}`).join('\n')}\n\n`;
     if (element.tagName === 'TABLE') {

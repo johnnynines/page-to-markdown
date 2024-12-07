@@ -8,24 +8,29 @@
 <body>
   <div id="header">
     <h1>Convert Content To Markdown</h1>
+    <p class="description">Convert the current tab content to Markdown while keeping the content heirarchy.
+    </p>
   </div>
   <div id="content">
     <div id="controls">
-      <input type="checkbox" id="omit-content" class="form-check-input" />
-      <label class="form-check-label">
-        Omit navigation, sidebar, pagination, footer, and table of contents
-      </label>
-      <label>
-        Additional selectors to omit (comma-separated):
-      </label>
-      <input type="text" id="additional-selectors" class="form-control" placeholder=".class1, #id2, tag3" />
+      <div class="mb-3">
+        <input type="checkbox" id="omit-content" class="form-check-input" />
+        <label class="form-check-label">
+          Omit navigation, sidebar, pagination, footer, and table of contents
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Additional selectors to omit (comma-separated):</label>
+        <input type="text" id="additional-selectors" class="form-control" placeholder=".class1, #id2, tag3" />
+      </div>
+      
       <button id="scrape" class="btn btn-primary">Scrape Current Tab</button>
     </div>
     <div id="outputContainer">
       <textarea id="outputField" readonly></textarea>
     </div>
     <div id="outputActions">
-      <button id="copy">Copy to Clipboard</button>
+      <button id="copy" class="btn btn-primary">Copy to Clipboard</button>
     </div>
   </div>
   <div id="footer">

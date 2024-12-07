@@ -18,6 +18,10 @@ body {
     width: 100%;
 }
 
+#footer {
+    padding: 0.5rem, 1rem;
+}
+
 #outputField {
     display: block;
     min-height: 50vh;
@@ -35,6 +39,8 @@ h1 {
     border-bottom: 1px dotted #333;
 }
 
-#footer {
-    padding: 0.5rem, 1rem;
+.description {
+    font-size: .85rem;
+    color: #777;
+    margin-bottom: 1rem;
 }
