@@ -24,6 +24,25 @@ document.getElementById('copy').addEventListener('click', () => {
   });
 });
 
+document.getElementById('theme-toggle').addEventListener('change', (event) => {
+  if (event.target.checked) {
+    localStorage.setItem('theme', 'dark');
+    document.body.classList.add('dark-mode');
+  } else {
+    localStorage.setItem('theme', 'light');
+    document.body.classList.remove('dark-mode');
+  }
+  location.reload();
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('theme-toggle').checked = true;
+  }
+});
+
 function scrapeContent(omitContent, additionalSelectors) {
   function getTextContent(element) {
     if (element.tagName === 'CODE' && ['P', 'LI', 'SPAN'].includes(element.parentElement.tagName)) {

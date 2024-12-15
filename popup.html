@@ -23,13 +23,18 @@
         <label>Additional selectors to omit (comma-separated):</label>
         <input type="text" id="additional-selectors" class="form-control" placeholder=".class1, #id2, tag3" />
       </div>
-      
-      <button id="scrape" class="btn btn-primary">Scrape Current Tab</button>
+      <div class="mb-3 text-end">
+        <button id="scrape" class="btn btn-primary">Extract content</button>
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" id="theme-toggle" class="form-check-input" />
+        <label class="form-check-label">Dark Mode</label>
+      </div>
     </div>
-    <div id="outputContainer">
+    <div id="outputContainer" class="mb-3">
       <textarea id="outputField" readonly></textarea>
     </div>
-    <div id="outputActions">
+    <div id="outputActions" class="text-end">
       <button id="copy" class="btn btn-primary">Copy to Clipboard</button>
     </div>
   </div>
