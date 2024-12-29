@@ -1,0 +1,51 @@
+/* Styles for Page to Markdown Extension */
+body {
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    width: 600px;
+    padding: 1rem;
+    background-color: #ffffff;
+}
+body.dark-mode {
+    background-color: #374151;
+    color: #D1D5DB;
+}
+
+/* Add any additional styles for dark mode here */
+#outputContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.5rem;
+    width: 100%;
+}
+
+#footer {
+    padding: 0.5rem, 1rem;
+}
+
+#outputField {
+    display: block;
+    min-height: 30vh;
+    overflow-y: scroll;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    margin-top: 1rem;
+    width: 100%;
+
+}
+
+h1 {
+    font-size: 1.5rem;
+    border-bottom: 1px dotted #333;
+}
+
+.description {
+    font-size: .85rem;
+    color: #777;
+    margin-bottom: 1rem;
+}

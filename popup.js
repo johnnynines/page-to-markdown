@@ -32,12 +32,27 @@ document.getElementById('theme-toggle').addEventListener('change', (event) => {
     localStorage.setItem('theme', 'light');
     document.body.classList.remove('dark-mode');
   }
-  location.reload();
+});
+
+function setThemeBasedOnSystem() {
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.body.classList.toggle('dark-mode', isDarkMode);
+  document.getElementById('theme-toggle').checked = isDarkMode;
+  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'system' || !theme) {
+    setThemeBasedOnSystem();
+  }
 });
 
 window.addEventListener('DOMContentLoaded', () => {
   const theme = localStorage.getItem('theme');
-  if (theme === 'dark') {
+  if (!theme) {
+    setThemeBasedOnSystem();
+  } else if (theme === 'dark') {
     document.body.classList.add('dark-mode');
     document.getElementById('theme-toggle').checked = true;
   }
